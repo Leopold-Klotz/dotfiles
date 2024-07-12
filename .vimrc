@@ -2,8 +2,15 @@ set nocompatible
 set t_Co=256
 set bg=dark
 set modeline
-so ~/.cs444/vim/autoload/plug.vim
-call plug#begin('~/.cs444/vim/plugged')
+
+" Set up vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
 " 80 line
 Plug 'vim-scripts/eighties.vim'
 Plug 'PreserveNoEOL'
@@ -15,7 +22,6 @@ Plug 'nightsense/vimspectr'
 Plug 'tomlion/vim-solidity'
 Plug 'kien/ctrlp.vim'
 call plug#end()
-
 
 colorscheme angr
 
@@ -85,22 +91,6 @@ autocmd FileType python
 autocmd FileType *
       \ setlocal formatoptions-=c formatoptions-=o
 
-" Mappings
-"noremap j gj
-"noremap k gk
-"noremap <Down> gj
-"noremap <Up> gk
-"noremap gj j
-"noremap gk k
-"noremap H ^
-"noremap L $
-"inoremap <C-A> <ESC>I
-"inoremap <C-E> <ESC>A
-"cnoremap <C-A> <Home>
-"cnoremap <C-E> <End>
-" Break the undo block when Ctrl-u
-"inoremap <C-U> <C-G>u<C-U>
-
 " Search regex
 nnoremap / /\v
 vnoremap / /\v
@@ -114,7 +104,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-
 
 " Reselect visual block after shifting
 vnoremap < <gv
