@@ -1,0 +1,9 @@
+[user]
+	name = Leopold Klotz
+	email = leopoldk3@gmail.com
+[credential]
+	helper = store
+[core]
+	autocrlf = false
+[push]
+	default = simple
